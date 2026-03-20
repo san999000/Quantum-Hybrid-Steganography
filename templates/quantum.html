@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quantum Steganography Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- IMPORTANT: different CSS file -->
+    <link
+      rel="stylesheet"
+      href="static\quantum.css"
+    />
+  </head>
+
+  <body>
+    <div class="quantum-container">
+      <h1>Quantum Steganography — Measurement Analysis</h1>
+      <p class="subtitle">Non-deterministic decoding • Statistical inference</p>
+
+      <div class="summary">
+        <div><b>Most likely bitstring:</b> {{ most_likely }}</div>
+        <div><b>Probability:</b> {{ probability }}%</div>
+        <div><b>Confidence score:</b> {{ confidence }}%</div>
+        <div class="verdict">{{ verdict }}</div>
+      </div>
+
+      <h2>Measurement Probability Distribution</h2>
+
+      <table>
+        <tr>
+          <th>Bitstring</th>
+          <th>Probability</th>
+        </tr>
+        {% for bit, prob in distribution.items() %}
+        <tr>
+          <td>{{ bit }}</td>
+          <td>{{ (prob * 100) | round(2) }}%</td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <p class="note">
+        ⚠ This module does not recover plaintext. Information is inferred
+        statistically from quantum measurements.
+      </p>
+    </div>
+  </body>
+</html>

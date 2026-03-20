@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Quantum-Inspired Steganography</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Quantum-Inspired Image Steganography</h1>
+
+      <div class="card">
+        <h2>Encode</h2>
+        <form action="/encode" method="POST" enctype="multipart/form-data">
+          <label>Upload Image (PNG recommended)</label>
+          <input type="file" name="image" required />
+
+          <label>Enter Secret Message</label>
+          <textarea name="message" required></textarea>
+
+          <button type="submit">Generate Stego Image</button>
+        </form>
+
+        <a class="link-btn" href="/download-key">Download Key File</a>
+      </div>
+
+      <div class="card">
+        <h2>Decode</h2>
+        <form action="/decode" method="POST" enctype="multipart/form-data">
+          <label>Upload Stego Image</label>
+          <input type="file" name="stego_image" required />
+
+          <label>Upload Key File (.txt)</label>
+          <input type="file" name="key_file" required />
+
+          <button type="submit">Decode Message</button>
+        </form>
+
+        {% if decoded_message %}
+        <div class="result">
+          <h3>Decoded Message:</h3>
+          <p>{{ decoded_message }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>
